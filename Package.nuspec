@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>LittleConvoy</id>
         <version>1.0.0</version>
@@ -13,6 +13,12 @@
         <releaseNotes />
         <copyright>Copyright 2014</copyright>
         <tags>ajax jsonp javascript c# .net</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="Newtonsoft.Json" version="5.0.1" />
+                <dependency id="Microsoft.AspNet.Mvc" version="5.1.0" />
+            </group>
+        </dependencies>
     </metadata>
     <files>
         <file src="build\typings\LittleConvoy.Interfaces.d.ts" target="content\Scripts\Typings\LittleConvoy.Interfaces.d.ts" />

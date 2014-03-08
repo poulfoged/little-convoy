@@ -6,3 +6,5 @@
 /*.suo
 /g.bat
 /build/LittleConvoy.1.0.0.nupkg
+/packages/Newtonsoft.Json.5.0.1
+*.user

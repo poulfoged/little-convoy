@@ -28,7 +28,7 @@ namespace LittleConvoy
             using (var stream = transport.Recieve(controllerContext.HttpContext, configuration))
             using (var textReader = new StreamReader(stream))
             using (var reader = new JsonTextReader(textReader))
-                return JsonSerializer.Create().Deserialize(reader, bindingContext.ModelType);
+                return JsonSerializer.Create(new JsonSerializerSettings()).Deserialize(reader, bindingContext.ModelType);
         }
     }
 }
