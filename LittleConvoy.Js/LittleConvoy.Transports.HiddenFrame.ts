@@ -79,25 +79,21 @@ export module LittleConvoy.Transports {
             promise.finally(() => {
                 // prevent timeout from firing
                 if (timer) {
-                    console.log('removing timer');
                     window.clearTimeout(timer); 
                 }
 
                 // remove event message passing event listener
                 if (messageHandler) {
-                    console.log('removing eventlistener');
                     window.removeEventListener("message", messageHandler);
                 }
 
                 // remove iframe
                 if (frame) {
-                    console.log('removing frame');
                     frame.parentElement.removeChild(frame);
                 }
 
                 // remove form from body
                 if (form) {
-                    console.log('removing form');
                     form.parentElement.removeChild(form);
                 }
             });

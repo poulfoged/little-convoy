@@ -22,4 +22,3 @@ define(["require", "exports", 'lib/Promise'], function(require, exports, Promise
     })(exports.LittleConvoy || (exports.LittleConvoy = {}));
     var LittleConvoy = exports.LittleConvoy;
 });
-//# sourceMappingURL=LittleConvoy.Client.js.map

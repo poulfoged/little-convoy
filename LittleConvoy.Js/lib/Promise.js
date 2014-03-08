@@ -1,4 +1,3 @@
-/// <reference path="PromiseAPI.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -9,12 +8,6 @@ define(["require", "exports"], function(require, exports) {
     (function (Ten) {
         "use strict";
 
-        //export interface IPromise {
-        //    then(s?, e?, p?): IPromise;
-        //    progressed(p): IPromise;
-        //    catch(e): IPromise;
-        //    finally(e): IPromise;
-        //}
         function isPromise(v) {
             return !!(v && typeof v.then === "function");
         }
@@ -32,7 +25,6 @@ define(["require", "exports"], function(require, exports) {
         var queueTaskToEventLoop;
         (function () {
             if (typeof process === "object" && typeof process.nextTick === "function") {
-                // for Node
                 queueTaskToEventLoop = function (t) {
                     process.nextTick(t);
                 };
@@ -59,8 +51,6 @@ define(["require", "exports"], function(require, exports) {
                     window.postMessage("triger of function call", "*");
                 };
             } else if (typeof window === "object" && typeof window.postMessage !== "undefined" && typeof window.attachEvent !== "undefined") {
-                // Each `typeof setTimeout` and `typeof attachEvent` may be not "function" but "object"
-                // in old IEs
                 queueTaskToEventLoop = function (t) {
                     var onMessage = function (evt) {
                         window.detachEvent("onmessage", onMessage);
@@ -70,7 +60,6 @@ define(["require", "exports"], function(require, exports) {
                     window.postMessage("triger of function call", "*");
                 };
             } else if (typeof setTimeout !== "undefined") {
-                // `typeof setTimeout` may be not "function" but "object" in old IEs
                 queueTaskToEventLoop = function (t) {
                     setTimeout(t, 0);
                 };
@@ -87,7 +76,6 @@ define(["require", "exports"], function(require, exports) {
                 this.__callbacks = [];
             }
             BasePromise.prototype.then = function (success, error, progress) {
-                // create callback obj
                 var prom = new BasePromise();
                 prom.__parentPromise = this;
                 var callbackObj = {
@@ -285,4 +273,3 @@ define(["require", "exports"], function(require, exports) {
     })(exports.Ten || (exports.Ten = {}));
     var Ten = exports.Ten;
 });
-//# sourceMappingURL=Promise.js.map

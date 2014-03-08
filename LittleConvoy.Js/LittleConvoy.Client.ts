@@ -1,8 +1,10 @@
+/// <reference path="LittleConvoy.Interfaces.ts" />
+/// <reference path="typings/requirejs/require.d.ts" />
 
 import Promise = require('lib/Promise');
 
 export module LittleConvoy {
-    export class Client {
+    export class Client implements IClient {
         constructor(private transportName: string) { }
 
         public send<T>(options: Options, data?: any): IPromise<T> {

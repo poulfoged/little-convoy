@@ -1,6 +1,4 @@
-﻿/// <reference path="typings/requirejs/require.d.ts" />
-/// <reference path="typings/qunit/qunit.d.ts" />
-define(["require", "exports", 'LittleConvoy.Client'], function(require, exports, clientLib) {
+﻿define(["require", "exports", 'LittleConvoy.Client'], function(require, exports, clientLib) {
     var createChunkOfData = function (iterations) {
         var sourceData = [];
 
@@ -118,4 +116,3 @@ define(["require", "exports", 'LittleConvoy.Client'], function(require, exports,
         });
     });
 });
-//# sourceMappingURL=LittleConvoy.Client.Tests.js.map

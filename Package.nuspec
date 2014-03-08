@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>LittleConvoy</id>
+        <version>1.0.0</version>
+        <title>Little Convoy</title>
+        <authors>Monzoom (Poul Foged)</authors>
+        <owners>Monzoom (Poul Foged)</owners>
+        <projectUrl>https://github.com/poulfoged/little-convoy</projectUrl>
+        <iconUrl>file://graphics/LittleConvoy icon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>LittleConvoy is meant as a drop-in replacement for your existing JsonP requests that provides progression callbacks</description>
+        <releaseNotes />
+        <copyright>Copyright 2014</copyright>
+        <tags>ajax jsonp javascript c# .net</tags>
+    </metadata>
+    <files>
+        <file src="build\typings\LittleConvoy.Interfaces.d.ts" target="content\Scripts\Typings\LittleConvoy.Interfaces.d.ts" />
+        <file src="build\typings\PromiseAPI.d.ts" target="content\Scripts\Typings\PromiseAPI.d.ts" />
+        <file src="build\littleConvoy.js" target="content\Scripts\littleConvoy.js" />
+        <file src="LittleConvoy\bin\Release\LittleConvoy.dll" target="lib\LittleConvoy.dll" />
+    </files>
+</package>

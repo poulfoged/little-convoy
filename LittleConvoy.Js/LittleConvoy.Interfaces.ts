@@ -11,3 +11,7 @@ interface Options {
     method?: string;
 }
 
+interface IClient {
+    send<T>(options: Options, data?: any): IPromise<T>;
+}
+

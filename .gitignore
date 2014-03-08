@@ -1,0 +1,7 @@
+*.map
+/LittleConvoy.Js/*.user
+*/bin/*
+*/obj/*
+/node_modules/*
+/*.suo
+/g.bat

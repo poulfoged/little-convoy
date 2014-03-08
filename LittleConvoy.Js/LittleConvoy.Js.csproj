@@ -66,27 +66,20 @@
     <TypeScriptCompile Include="LittleConvoy.Interfaces.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client.js">
-      <DependentUpon>LittleConvoy.Client.ts</DependentUpon>
-    </Content>
     <Content Include="lib\Promise.js">
       <DependentUpon>Promise.ts</DependentUpon>
     </Content>
-    <Content Include="lib\r.js" />
     <Content Include="lib\require.js" />
+    <Content Include="LittleConvoy.Client.js">
+      <DependentUpon>LittleConvoy.Client.ts</DependentUpon>
+    </Content>
+    <Content Include="LittleConvoy.Client.Tests.js">
+      <DependentUpon>LittleConvoy.Client.Tests.ts</DependentUpon>
+    </Content>
     <Content Include="LittleConvoy.Transports.HiddenFrame.js">
       <DependentUpon>LittleConvoy.Transports.HiddenFrame.ts</DependentUpon>
     </Content>
-    <Content Include="LittleConvoy.Transports.HiddenFrame.Tests - Copy.js">
-      <DependentUpon>LittleConvoy.Client.Tests.ts</DependentUpon>
-    </Content>
     <Content Include="QUnit-tests.html" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Client.js.map">
-      <DependentUpon>LittleConvoy.Client.ts</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
