@@ -5,3 +5,4 @@
 /node_modules/*
 /*.suo
 /g.bat
+/build/LittleConvoy.1.0.0.nupkg
