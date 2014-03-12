@@ -67,4 +67,4 @@ debugging purposes, adding a number of milliseconds on the server side for each 
 Known limitations
 -----------------
 * Only works in Internet Explorer 10+ for now, 8 & 9 is work in progress.
-* There is a ~600 bytes overhead compared to classic JSONP reqquests 
+* There is a ~600 bytes overhead compared to classic JSONP requests 
