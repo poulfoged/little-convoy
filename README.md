@@ -42,7 +42,7 @@ namespace LittleConvoy.TestSite.Controllers
 After that add the client to your project (included in the package) via require or by including build/client.js
 and calling it from JavaScript:
 
-'''javascript
+```javascript
 new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://littleconvoy.devchamp.com/demo/echo', delay: 0 }, { Hello: 'World'})
   .progressed(function (progress) {
       console.log('Progress from server: ' + progress + '%');
@@ -53,7 +53,7 @@ new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://littleconvo
     .catch(function (message) {
       return alert('unable to contact server:\n' + message);
     });
-'''
+```
 
 The string 'HiddenFrame' is the selected transport, only HiddenFrame is available for now.
 
