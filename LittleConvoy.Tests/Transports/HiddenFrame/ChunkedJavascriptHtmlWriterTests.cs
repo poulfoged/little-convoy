@@ -17,7 +17,7 @@ namespace LittleConvoy.Tests.Transports.HiddenFrame
             //Act
             using (var stringWriter = new StringWriter(builder))
             using (var writer = new ChunkedJavascriptHtmlWriter(stringWriter))
-                writer.WriteChunk("test", 10, "123");
+                writer.WriteChunk("test", 10, 123);
             
             //Assert
             StringAssert.Contains("test", builder.ToString());
@@ -66,7 +66,7 @@ namespace LittleConvoy.Tests.Transports.HiddenFrame
             using (var stringWriter = new StringWriter(builder))
             using (var writer = new ChunkedJavascriptHtmlWriter(stringWriter))
             {
-                writer.WriteChunks("123", "this is a test", 3, 70);
+                writer.WriteChunks(123, "this is a test", 3, 70);
             }
 
             //Assert

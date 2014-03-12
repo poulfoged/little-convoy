@@ -1,7 +1,12 @@
 {
   "name": "little-convoy",
+  "version": "0.1.0",
   "description": "LittleConvoy is meant as a drop-in replacement for your existing JsonP requests that provides progression callbacks",
-  "author": "Poul Foged (@modec)",
+  "keywords": "jsonp progression progress cors ajax promise",
+  "homepage": "https://github.com/poulfoged/little-convoy",
+  "bugs": "https://github.com/poulfoged/little-convoy/issues",
+  "license": "MIT",
+  "author": "Poul Foged Nielsen (@modec)",
   "dependencies": {
     "grunt": "0.x.x",
     "grunt-autoprefixer": "0.2.x",
@@ -21,6 +26,7 @@
   "devDependencies": {
     "grunt-contrib-requirejs": "^0.4.3",
     "grunt-nuget": "^0.1.1",
-    "almond": "^0.2.9"
+    "almond": "^0.2.9",
+    "grunt-processhtml": "^0.3.0"
   }
 }

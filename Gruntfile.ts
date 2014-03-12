@@ -216,9 +216,11 @@ interface IGruntConfig {
 }
 
 function setup(grunt) {
+    var pkg = grunt.file.readJSON("package.json")
+
     // Project configuration.
     grunt.initConfig({
-        pkg: grunt.file.readJSON("package.json"),
+        pkg: pkg,
         //copy: {
         //    bootstrap: {
         //        //expand: true,
@@ -278,13 +280,20 @@ function setup(grunt) {
                 expand: true
             }
         },
+        //processhtml: {
+        //    dist: {
+        //        files: {
+        //            'build/demo.html': ['LittleConvoy.Js/demo.html']
+        //        }
+        //    }
+        //},
         nugetpack: {
             dist: {
                 src: 'Package.nuspec',
                 dest: 'build',
 
                 options: {
-                    version: "1.0.0"
+                    version: pkg.version
                 }
             }
         }
@@ -295,6 +304,7 @@ function setup(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-nuget');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     grunt.registerTask('default', ["clean:build", "typescript", "requirejs", "copy:client", "nugetpack", "clean:temp"]);
 }

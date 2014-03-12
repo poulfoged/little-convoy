@@ -19,6 +19,7 @@
                     var frame;
                     var form;
                     var timer;
+                    var fakeFrame;
 
                     var promise = new Promise.Ten.Promise(function (resolve, reject, progress) {
                         if (!JSON)
@@ -36,8 +37,13 @@
 
                         timer = _this.resetTimeout(timer, options, rejecter);
 
-                        form = _this.createHiddenForm(callId, options, data);
+                        form = _this.createHiddenForm(frame.contentWindow.document, callId, options, data);
                         form.submit();
+
+                        setTimeout(function () {
+                            fakeFrame = _this.createFrame(_this.createId());
+                            fakeFrame.src = 'about:blank';
+                        }, 10);
 
                         messageHandler = function (event) {
                             if (callId != event.data.callId)
@@ -53,6 +59,7 @@
                             progress(event.data.progress);
 
                             if (event.data.progress >= 100) {
+                                console.log('full content now');
                                 if (status.buffer.length == 1 && status.buffer[0] == '')
                                     resolve();
                                 else
@@ -79,6 +86,10 @@
                         if (form) {
                             form.parentElement.removeChild(form);
                         }
+
+                        if (fakeFrame) {
+                            fakeFrame.parentElement.removeChild(fakeFrame);
+                        }
                     });
 
                     return promise;
@@ -93,7 +104,7 @@
                     }, options.timeout);
                 };
 
-                HiddenFrameTransport.prototype.createHiddenForm = function (callId, options, data) {
+                HiddenFrameTransport.prototype.createHiddenForm = function (document, callId, options, data) {
                     var form = document.createElement('form');
                     form.setAttribute('method', options.method);
                     form.setAttribute('action', options.url);
@@ -106,7 +117,7 @@
                     if (data)
                         this.addHiddenField(form, '_json', JSON.stringify(data));
 
-                    document.getElementsByTagName('body')[0].appendChild(form);
+                    window.document.getElementsByTagName('body')[0].appendChild(form);
                     return form;
                 };
 
@@ -124,10 +135,12 @@
 
                 HiddenFrameTransport.prototype.bindRejectionHandler = function (status, frame, rejecter) {
                     var handler = function () {
-                        if (!status.progress || status.progress <= 0)
-                            rejecter('Unable to load, invalid url?');
-                        else if (status.progress < 100)
-                            rejecter('Only loaded partially');
+                        setTimeout(function () {
+                            if (!status.progress || status.progress <= 0)
+                                rejecter('Unable to load, invalid url?');
+                            else if (status.progress < 100)
+                                rejecter('Only loaded partially');
+                        }, 100);
                     };
 
                     if (frame.onload) {

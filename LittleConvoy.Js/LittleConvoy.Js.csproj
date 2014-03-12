@@ -56,6 +56,7 @@
     <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Demo.ts" />
     <TypeScriptCompile Include="lib\PromiseAPI.ts" />
     <TypeScriptCompile Include="LittleConvoy.Client.ts" />
     <TypeScriptCompile Include="lib\Promise.ts" />
@@ -66,6 +67,10 @@
     <TypeScriptCompile Include="LittleConvoy.Interfaces.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demo.html" />
+    <Content Include="Demo.js">
+      <DependentUpon>Demo.ts</DependentUpon>
+    </Content>
     <Content Include="lib\Promise.js">
       <DependentUpon>Promise.ts</DependentUpon>
     </Content>
@@ -80,6 +85,9 @@
       <DependentUpon>LittleConvoy.Transports.HiddenFrame.ts</DependentUpon>
     </Content>
     <Content Include="QUnit-tests.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

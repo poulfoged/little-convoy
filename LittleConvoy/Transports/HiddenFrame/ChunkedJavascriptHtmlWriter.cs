@@ -19,18 +19,20 @@ namespace LittleConvoy.Transports.HiddenFrame
             Formatting = Formatting.None
         };
 
-        public ChunkedJavascriptHtmlWriter(TextWriter writer) : base(writer) { }
-        public ChunkedJavascriptHtmlWriter(TextWriter writer, string tabString) : base(writer, tabString) { }
-
-        public void WriteChunk(string chunk, int progress, string callId)
+        public ChunkedJavascriptHtmlWriter(TextWriter writer) : base(writer, "")
         {
-            RenderBeginTag(HtmlTextWriterTag.Script);
-            Write("window.parent.postMessage(");
-            serialier.Serialize(this, new { CallId = callId, Progress = progress, Chunk = chunk });
-            Write(", '*');");
-            RenderEndTag();
-            Write(NewLine);
-           
+            NewLine = "";
+        }
+
+        public ChunkedJavascriptHtmlWriter(TextWriter writer, string tabString) : this(writer) { }
+
+        public void WriteChunk(string chunk, int progress, int callId)
+        {
+            this
+                .Begin(HtmlTextWriterTag.Script, "window.parent.postMessage(")
+                    .Serialize(serialier,  new { CallId = callId, Progress = progress, Chunk = chunk })
+                .End(", '*');")
+                .NewLine();
             try
             {
                 Flush();
@@ -40,32 +42,27 @@ namespace LittleConvoy.Transports.HiddenFrame
 
         public void Header()
         {
-            WriteLine("<!DOCTYPE html>");
-            RenderBeginTag(HtmlTextWriterTag.Html);
-            RenderBeginTag(HtmlTextWriterTag.Head);
-            AddAttribute("charset", "utf-8");
-            RenderFullTag(HtmlTextWriterTag.Meta);
-            RenderBeginTag(HtmlTextWriterTag.Title);
-            WriteLine("this is iframe");
-            RenderEndTag(); //title
-            RenderEndTag(); //head
-            RenderBeginTag(HtmlTextWriterTag.Body);
-        }
-
-        private void RenderFullTag(HtmlTextWriterTag tag)
-        {
-            RenderBeginTag(tag);
-            RenderEndTag();
+            this.Out("<!DOCTYPE html>").NewLine()
+                .Begin(HtmlTextWriterTag.Html).NewLine()
+                .Begin(HtmlTextWriterTag.Head).NewLine()
+                    .Attribute("charset", "utf-8")
+                    .Full(HtmlTextWriterTag.Meta).NewLine()
+                    .Full(HtmlTextWriterTag.Title, "LittleConvoy").NewLine()
+                .End().NewLine()
+                .Begin(HtmlTextWriterTag.Body).NewLine();
         }
 
         public void Footer()
         {
-            RenderEndTag(); //body
-            RenderEndTag(); //html
+            this
+                .End().NewLine()    //body
+                .End().NewLine();   //html
+
         }
 
-        public void WriteChunks(string callId, string content, int numberOfChunks, int startPercent, int delay = 0)
+        public void WriteChunks(int callId, string content, int numberOfChunks, int startPercent, int delay = 0)
         {
+            Header();
             if (string.IsNullOrWhiteSpace(content))
                 WriteChunk(string.Empty, 100, callId);
            
@@ -87,6 +84,7 @@ namespace LittleConvoy.Transports.HiddenFrame
 
                 Thread.Sleep(delay);
             });
+            Footer();
         }
     }
 }
