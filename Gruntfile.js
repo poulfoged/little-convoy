@@ -1,8 +1,4 @@
-﻿// Type definitions for Grunt JS
-// Project: http://gruntjs.com/
-// Definitions by: Basarat Ali Syed <https://github.com/basarat>
-// Definitions: https://github.com/borisyankov/DefinitelyTyped
-
+﻿
 
 
 
@@ -13,18 +9,8 @@
 function setup(grunt) {
     var pkg = grunt.file.readJSON("package.json");
 
-    // Project configuration.
     grunt.initConfig({
         pkg: pkg,
-        //copy: {
-        //    bootstrap: {
-        //        //expand: true,
-        //        //flatten: true,
-        //        src: ['./node_modules/almond/almond.js'],
-        //        dest: './',
-        //        filter: 'isFile'
-        //    }
-        //},
         clean: {
             build: {
                 src: ['build\**', 'temp']
@@ -75,13 +61,6 @@ function setup(grunt) {
                 expand: true
             }
         },
-        //processhtml: {
-        //    dist: {
-        //        files: {
-        //            'build/demo.html': ['LittleConvoy.Js/demo.html']
-        //        }
-        //    }
-        //},
         nugetpack: {
             dist: {
                 src: 'Package.nuspec',
@@ -89,6 +68,11 @@ function setup(grunt) {
                 options: {
                     version: pkg.version
                 }
+            }
+        },
+        nugetpush: {
+            dist: {
+                src: 'build/*.nupkg'
             }
         }
     });
@@ -101,6 +85,8 @@ function setup(grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
 
     grunt.registerTask('default', ["clean:build", "typescript", "requirejs", "copy:client", "nugetpack", "clean:temp"]);
+
+    grunt.registerTask('dist', ["clean:build", "typescript", "requirejs", "copy:client", "nugetpack", "clean:temp", "nugetpush"]);
 }
 
 (module).exports = setup;
