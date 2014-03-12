@@ -8,6 +8,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleConvoy.Tests", "LittleConvoy.Tests\LittleConvoy.Tests.csproj", "{91AE14EF-E072-4AEF-B024-88B90F461E12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3BC6B337-A7B6-49E9-AF2C-4352BD59B098}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleConvoy.Js", "LittleConvoy.Js\LittleConvoy.Js.csproj", "{DB063FDB-44B6-4AC9-A4F6-BABD6BB21654}"
 EndProject
