@@ -9,3 +9,4 @@
 /packages/*
 *.user
 /build/LittleConvoy.0.1.0.nupkg
+/d.bat

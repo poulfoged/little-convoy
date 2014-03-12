@@ -296,6 +296,11 @@ function setup(grunt) {
                     version: pkg.version
                 }
             }
+        },
+        nugetpush: {
+            dist: {
+                src: 'build/*.nupkg',
+            }
         }
     });
 
@@ -307,6 +312,8 @@ function setup(grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
 
     grunt.registerTask('default', ["clean:build", "typescript", "requirejs", "copy:client", "nugetpack", "clean:temp"]);
+
+    grunt.registerTask('dist', ["clean:build", "typescript", "requirejs", "copy:client", "nugetpack", "clean:temp", "nugetpush"]);
 }
 
 

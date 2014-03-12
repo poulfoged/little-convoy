@@ -24,6 +24,7 @@
             return alert('unable to contact server:\n' + message);
         });
     };
+    
 
     var element2 = document.getElementById('go2');
     var progressbar2 = document.getElementById('progress2');
