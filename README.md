@@ -1,11 +1,10 @@
 <img src="https://raw.github.com/poulfoged/little-convoy/master/graphics/LittleConvoy%20Logo.png" />
 
-*Drop-in replacement for your existing JsonP requests that provides progression callbacks.*
+*Drop-in replacement for your existing AJAX requests that provides progression callbacks.*
 
 Introduction
 ------------
-When performing cross-server JSONP requests today, there is little feedback on progress, timeouts and other errors.
-Also there is limits to the amount of data that can be send when it all has to be packed into the request querystring.
+When performing cross-server AJAX requests today, there is little feedback on progress.
 
 This library provides server requests via real posts to a hidden frame and uses HTTP/1.1 chunked transfer encoding to
 provide progression events duing send.
@@ -61,12 +60,12 @@ Note that the default number of progression callbacks is 10. Hello world is the 
 
 POST/GET method can be specified, default is POST.
 
-The Library contains a small Promise library which can easy be converted to the promise lib of your choice. The dealy parameter can be used for 
+The Library contains a small Promise library which can easy be converted to the promise lib of your choice. The delay parameter can be used for 
 debugging purposes, adding a number of milliseconds on the server side for each request.
 
 Known limitations
 -----------------
 * Only works in Internet Explorer 10+ for now, 8 & 9 is work in progress.
-* There is a ~600 bytes overhead compared to classic JSONP requests 
+* There is a ~600 bytes overhead compared to classic requests.
 * The send request with the chunked http is a hack in the ASPNET MVC pipeline, so if you are using other custom MVC filters they may fail. 
 That said, Microsoft Internet Information Server does not seem to care and any pipeline modules like gzip/deflate compression still works.
