@@ -14,7 +14,7 @@
     var element = document.getElementById('go1');
     var progressbar = document.getElementById('progress1');
     element.onclick = function () {
-        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://localhost:49508/demo/sample', delay: 1000 }).progressed(function (progress) {
+        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://littleconvoy.devchamp.com/demo/sample', delay: 1000 }).progressed(function (progress) {
             progressbar.style.width = progress.toString() + '%';
         }).then(function () {
             return setTimeout(function () {
@@ -28,7 +28,7 @@
     var element2 = document.getElementById('go2');
     var progressbar2 = document.getElementById('progress2');
     element2.onclick = function () {
-        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://localhost:49508/demo/sample', delay: 0 }).progressed(function (progress) {
+        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://littleconvoy.devchamp.com/demo/sample', delay: 0 }).progressed(function (progress) {
             progressbar2.style.width = progress.toString() + '%';
         }).then(function () {
             return setTimeout(function () {
@@ -42,7 +42,7 @@
     var element3 = document.getElementById('go3');
     var progressbar3 = document.getElementById('progress3');
     element3.onclick = function () {
-        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://localhost:49508/demo/echo', delay: 0 }, createChunkOfData(1000)).progressed(function (progress) {
+        new clientLib.LittleConvoy.Client('HiddenFrame').send({ url: 'http://littleconvoy.devchamp.com/demo/echo', delay: 0 }, createChunkOfData(1000)).progressed(function (progress) {
             progressbar3.style.width = progress.toString() + '%';
         }).then(function () {
             return setTimeout(function () {
