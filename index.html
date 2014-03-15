@@ -1,116 +1,106 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>LittleConvoy by poulfoged</title>
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>LittleConvoy Demo</title>
+    <!-- build:js littleConvoy.js -->
+    <script src="lib/require.js" data-main="Demo.js"></script>
+    <!-- /build -->
+    <style>
+        body, html {
+            margin: 0;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>LittleConvoy</h1>
-        <p>LittleConvoy is meant as a drop-in replacement for your existing JsonP requests that provides progression callbacks</p>
+        body {
+            font-family: helvetica;
+            padding: 30px;
+        }
 
-        <p class="view"><a href="https://github.com/poulfoged/little-convoy">View the Project on GitHub <small>poulfoged/little-convoy</small></a></p>
+        fieldset {
+            margin-bottom: 20px;
+        }
 
+        .progress div {
+            background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #e50000, #f44);
+            background-image: linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), linear-gradient(left, #e50000, #f44);
+            background-image: -moz-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -moz-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -moz-linear-gradient(left, #e50000, #f44);
+            background-image: -ms-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -ms-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -ms-linear-gradient(left, #e50000, #f44);
+            background-color: #f44;
+            -moz-background-size: 35px 20px, 100% 100%, 200% 100%;
+            -o-background-size: 35px 20px, 100% 100%, 200% 100%;
+            -webkit-background-size: 35px 20px, 100% 100%, 200% 100%;
+            background-size: 35px 20px, 100% 100%, 200% 100%;
+            -webkit-animation: animate-stripes 5s linear infinite;
+            -moz-animation: animate-stripes 5s linear infinite;
+            -o-animation: animate-stripes 5s linear infinite;
+            animation: animate-stripes 5s linear infinite;
+            -moz-transition: all 2s ease;
+            -o-transition: all 2s ease;
+            -webkit-transition: all 2s ease;
+            transition: all 2s ease;
+            height: 100%;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
 
-        <ul>
-          <li><a href="https://github.com/poulfoged/little-convoy/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/poulfoged/little-convoy/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/poulfoged/little-convoy">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p><img src="https://raw.github.com/poulfoged/little-convoy/master/graphics/LittleConvoy%20Logo.png"></p>
+        .progress {
+            width: 100%;
+            height: 20px;
+            color: #e50000;
+            margin: 10px 0;
+            border: 2px solid #eee;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
 
-<p><em>Drop-in replacement for your existing JsonP requests that provides progression callbacks.</em></p>
+         
 
-<h2>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+        @-webkit-keyframes animate-stripes {
+            100% {
+                background-position: -100px 0;
+            }
+        }
 
-<p>When performing cross-server JSONP requests today, there is little feedback on progress, timeouts and other errors.
-Also there is limits to the amount of data that can be send when it all has to be packed into the request querystring.</p>
+        @keyframes animate-stripes {
+            100% {
+                background-position: -100px 0;
+            }
+        }
 
-<p>This library provides server requests via real posts to a hidden frame and uses HTTP/1.1 chunked transfer encoding to
-provide progression events duing send.</p>
+        @-moz-keyframes animate-stripes {
+            100% {
+                background-position: -100px 0;
+            }
+        }
 
-<h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
-
-<ul>
-<li>.NET 4.0+ (reporting via HTTP available via <code>LittleConvoyActionAttribute</code> class)</li>
-<li>ASP.NET MVC 3+</li>
-</ul><h2>
-<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How To Use</h2>
-
-<p><strong>First</strong>, specify LittleConvoy as a dependency:</p>
-
-<p>PM&gt; Install-Package LittleConvoy</p>
-
-<p><strong>Second</strong>, take your exiting JSON emitting controller methods and decorate them with this attribute:</p>
-
-<div class="highlight highlight-csharp"><pre><span class="k">using</span> <span class="nn">LittleConvoy.TestSite.Utilities</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">LittleConvoy.TestSite.Controllers</span>
-<span class="p">{</span>
-  <span class="k">public</span> <span class="k">class</span> <span class="nc">DemoController</span> <span class="p">:</span> <span class="n">Controller</span>
-  <span class="p">{</span>
-<span class="na">    [LittleConvoyAction(StartPercent = 0)]</span>
-    <span class="k">public</span> <span class="n">ActionResult</span> <span class="nf">Echo</span><span class="p">(</span><span class="kt">object</span> <span class="n">source</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="n">JsonNetResult</span> <span class="p">{</span><span class="n">Data</span> <span class="p">=</span> <span class="n">source</span><span class="p">,</span> <span class="n">JsonRequestBehavior</span> <span class="p">=</span> <span class="n">JsonRequestBehavior</span><span class="p">.</span><span class="n">AllowGet</span><span class="p">};</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>After that add the client to your project (included in the package) via require or by including build/client.js
-and calling it from JavaScript:</p>
-
-<div class="highlight highlight-javascript"><pre><span class="k">new</span> <span class="nx">clientLib</span><span class="p">.</span><span class="nx">LittleConvoy</span><span class="p">.</span><span class="nx">Client</span><span class="p">(</span><span class="s1">'HiddenFrame'</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span> <span class="nx">url</span><span class="o">:</span> <span class="s1">'http://littleconvoy.devchamp.com/demo/echo'</span><span class="p">,</span> <span class="nx">delay</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">Hello</span><span class="o">:</span> <span class="s1">'World'</span><span class="p">})</span>
-  <span class="p">.</span><span class="nx">progressed</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">progress</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Progress from server: '</span> <span class="o">+</span> <span class="nx">progress</span> <span class="o">+</span> <span class="s1">'%'</span><span class="p">);</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Done, recieved data: '</span> <span class="o">+</span> <span class="nx">data</span><span class="p">)</span>
-   <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">'unable to contact server:\n'</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-    <span class="p">});</span>
-</pre></div>
-
-<p>The string 'HiddenFrame' is the selected transport, only HiddenFrame is available for now.</p>
-
-<p>Note that the default number of progression callbacks is 10. Hello world is the data that is send to the server. </p>
-
-<p>POST/GET method can be specified, default is POST.</p>
-
-<p>The Library contains a small Promise library which can easy be converted to the promise lib of your choice. The dealy parameter can be used for 
-debugging purposes, adding a number of milliseconds on the server side for each request.</p>
-
-<h2>
-<a name="known-limitations" class="anchor" href="#known-limitations"><span class="octicon octicon-link"></span></a>Known limitations</h2>
-
-<ul>
-<li>Only works in Internet Explorer 10+ for now, 8 &amp; 9 is work in progress.</li>
-<li>There is a ~600 bytes overhead compared to classic JSONP requests </li>
-<li>The send request with the chunked http is a hack in the ASPNET MVC pipeline, so if you are using other custom MVC filters they may fail. 
-That said, Microsoft Internet Information Server does not seem to care and any pipeline modules like gzip/deflate compression still works.</li>
-</ul>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/poulfoged">poulfoged</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
     
-  </body>
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Progress with artificial delay</legend>
+        <div class="progress">
+            <div id="progress1" style="width: 0%"></div>
+        </div>
+        <button id="go1">Go</button>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Progress no delay</legend>
+        <div class="progress">
+            <div id="progress2" style="width: 0%"></div>
+        </div>
+        <button id="go2">Go</button>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Posting and echoing a chunk of data</legend>
+        <div class="progress">
+            <div id="progress3" style="width: 0%"></div>
+        </div>
+        <button id="go3">Go</button>
+    </fieldset>
+</body>
 </html>
