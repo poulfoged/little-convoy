@@ -65,7 +65,7 @@ debugging purposes, adding a number of milliseconds on the server side for each 
 
 Known limitations
 -----------------
-* Only works in Internet Explorer 10+ for now, 8 & 9 is work in progress.
+* In Internet Explorer it only works in 10+ for now, 8 & 9 is work in progress.
 * There is a ~600 bytes overhead compared to classic requests.
 * The send request with the chunked http is a hack in the ASPNET MVC pipeline, so if you are using other custom MVC filters they may fail. 
 That said, Microsoft Internet Information Server does not seem to care and any pipeline modules like gzip/deflate compression still works.
