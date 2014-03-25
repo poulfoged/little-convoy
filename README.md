@@ -9,6 +9,11 @@ When performing cross-server AJAX requests today, there is little feedback on pr
 This library provides server requests via real posts to a hidden frame and uses HTTP/1.1 chunked transfer encoding to
 provide progression events duing send.
 
+See blog posts in 
+[English](http://complexitymaze.com/2014/03/25/javascript-promises-server-call-with-progress-indicator")
+or
+[Danish](http://qed.dk/poul-foged/2014/03/25/javasscript-promises-server-kald-med-progress-indikator").
+
 Demo
 ----
 [Here](http://poulfoged.github.io/little-convoy/)
