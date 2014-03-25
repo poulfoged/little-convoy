@@ -9,6 +9,11 @@ When performing cross-server AJAX requests today, there is little feedback on pr
 This library provides server requests via real posts to a hidden frame and uses HTTP/1.1 chunked transfer encoding to
 provide progression events duing send.
 
+Demo
+----
+[Here](http://poulfoged.github.io/little-convoy/)
+
+
 Requirements
 ------------
 * .NET 4.0+ (reporting via HTTP available via `LittleConvoyActionAttribute` class)
