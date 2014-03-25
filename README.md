@@ -23,7 +23,7 @@ How To Use
 ----------
 **First**, specify LittleConvoy as a dependency:
 
-PM> Install-Package LittleConvoy
+> PM> Install-Package LittleConvoy
 
 **Second**, take your exiting JSON emitting controller methods and decorate them with this attribute:
 
